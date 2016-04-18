@@ -1,0 +1,66 @@
+<div class="row">
+<div class="small-6 columns">
+  <div class="form-style-10">
+    <h1 style="text-align: center">Listing client appointments</h1>
+        <table class="table table-striped">
+      <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Day</th>
+            <th>Time</th>
+            <th></th>
+          </tr>
+      </thead>
+
+        <tbody>
+          <% @appointments.each do |appointment| %>
+          <tr>
+          <td><%= appointment.user.name %></td>
+          <td>
+              <p><%= truncate(appointment.email, length: 12) %></p>
+          </td>
+          <td><%= appointment.time.strftime("%d %b %y") %></td>
+          <td><%= appointment.time.strftime("%H:%M") %></td>
+          <td><%= button_to 'Send Reminder', reminder_path(user_id: appointment.user.id, time:(appointment.time).strftime("%H:%M"), consultant_id: appointment.consultant.id) %></td>
+          <!--<td><%= link_to 'Show', appointment %></td>
+          <td><%= link_to 'Edit', edit_appointment_path(appointment) %></td>
+          <td><%= button_to 'Destroy', appointment, method: :delete, class: 'small button round', data: { confirm: 'Are you sure?'} %></td>-->
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+      <br>
+
+   <!-- <%= link_to 'New Appointment', new_appointment_path, class: 'small button round'%><p>-->
+  
+ </div>
+ </div>
+ <div class="small-6 columns">
+ <div class="form-style-10">
+   <h1 style="text-align: center">Monthly Calendar</h1>
+   <%= month_calendar(events: @appointments) do |date, appointments| %>
+   <%= date %>
+    <br>
+           
+   <%if appointments.size > 0 %>
+   <%= link_to "<div class='section'>#{appointments.size}</div>".html_safe, '#' %>
+   
+   <% end %>
+   <% end %>
+ </div>
+<!--
+ <div>
+ <h1>Daily Calendar</h1>
+ <%= calendar events: @appointments, number_of_days: 5 do |date, appointments| %>
+  <%= date %>
+    <br>
+   <%if appointments.size > 0 %>
+   <%= link_to "<strong>#{appointments.size} appointments</strong>".html_safe, '#' %>
+   <% end %>
+ <% end %>
+ </div>-->
+
+</div>
+</div>

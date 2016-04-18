@@ -1,0 +1,15 @@
+<div class="inner-wrap">
+     <h4><%= link_to result.title, update_link_path(title: result.title.to_s, link_url: result.link_url.to_s), {:style=>'color:blue;', :class => "css_class"} %></h4>
+      <div style="color:green"><%= result.link_url %></div>
+      <b>Click Count: <%= result.click_count %></b>
+      <b>Average Rating: <%= sprintf('%.2f', result.average_rating) || "No ratings yet" %></b>
+      <b>Number of Ratings: <%= result.number_of_ratings %></b>
+      <p>Rate this link</p>
+      <%= form_tag update_rating_path do %>
+          <%= label_tag 'rating' %>
+          <%= select_tag 'rating', options_for_select(Rating::VALUES) %>
+          <%= hidden_field_tag 'title', result.title.to_s %>
+          <%= hidden_field_tag 'link_url', result.link_url.to_s %>
+          <%= submit_tag 'Rate this link' %>
+      <% end %>
+    </div>

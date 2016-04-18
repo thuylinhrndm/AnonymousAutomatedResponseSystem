@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%= csrf_meta_tags %>
+    <%= action_cable_meta_tag %>
+   
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
+    <%= javascript_include_tag "vendor/modernizr" %>
+    <meta charset="utf-8" />
+     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= content_for?(:title) ? yield(:title) : "AARS" %></title>
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/foundicons/3.0.0/foundation-icons.css" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Bitter' rel='stylesheet' type='text/css'>
+  
+  </head>
+
+  <body>
+  <!--Navigation Bar-->
+
+  <nav class="navbar navbar-inverse">
+  <div class="container">
+  <div class="navbar-header"><h1 class="name"><i class="fi-widget"></i> AARS</a></h1></div>
+  <ul class="nav navbar-nav">
+
+  <!-- Navigration bar -->
+    <li><%= content_tag(:li, link_to("All Posts", posts_path), class: list_class(posts_path)) %></li>
+    <% if current_user && current_user.role == "consultant" %>
+    <li><%= content_tag(:li, link_to("My Answers", my_answers_path), class: list_class(my_answers_path)) %></li>
+    <li><%= content_tag(:li, link_to("My Clients", my_clients_path), class: list_class(my_clients_path)) %></li>
+    <% elsif current_user && current_user.role == "user" %>
+    <li><%= content_tag(:li, link_to("My Posts", my_posts_path), class: list_class(my_posts_path)) %></li>
+    <li><%= content_tag(:li, link_to("My Appointments", my_appointments_path), class: list_class(my_appointments_path)) %></li>
+    <li><%= content_tag(:li, link_to("Post Problem", new_post_path, method: :get), class: list_class(new_post_path)) %></li>
+    <% end %>
+ </ul>
+  <!-- Log in system -->
+   <ul class="nav navbar-nav navbar-right">
+  <% if current_user %>
+      <li></li>
+      <li><%= link_to "Welcome #{current_user.name}!", "#" %></li>
+      <% if current_user.role %>
+      <li></li>
+      <li><%= content_tag(:a, current_user.role ? "#{current_user.role.capitalize}" : "") %></li>
+      <% end %>
+      <li></li>
+      <li><%= link_to "Sign Out", sign_out_path %></li>
+      <li></li>
+  <% else %>
+      <li></li>
+      <li><%= link_to image_tag("Google.png", :size => "25x25", :crop => :fill), "/auth/google_oauth2" %></li>
+      <li></li>
+      <!--<li><%= link_to image_tag("facebook.png", :size => "25x25", :crop => :fill), "/auth/facebook" %></li>-->
+      <li></li>
+  <% end %>
+ </ul>
+ </div>
+</nav>
+
+  <% if notice %>
+    <span class="alert"><%= notice %></span>
+  <% end %>
+
+<%= yield %>
+  </body>
+</html>

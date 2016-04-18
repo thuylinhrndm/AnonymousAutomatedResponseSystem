@@ -1,0 +1,24 @@
+<div class="small-12 columns">
+  <div class="form-style-9">
+    <h1 style="text-align: center">My appointments</h1>
+    
+        <% @appointments.each do |appointment| %>
+          <div class="form-style-10">
+              <p>Name: <%= appointment.name %></p>
+              <p>Email:<%= appointment.email %> </p>
+              <p>Day: <%= appointment.time.strftime("%d %b %y") %></p>
+              <p>Time: <%= appointment.time.strftime("%H:%M") %></p>
+              <p><%= link_to 'Show', appointment %> | 
+              <%= link_to 'Edit', edit_appointment_path(appointment) %> | 
+              <%= button_to 'Destroy', appointment, method: :delete, class: 'small button round', data: { confirm: 'Are you sure?'} %>
+              </p>
+          </div>
+        <% end %>
+       
+
+      <br>
+
+    <%= link_to 'New Appointment', new_appointment_path %>
+  
+ </div>
+ </div>

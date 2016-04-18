@@ -1,0 +1,7 @@
+<h3>Saved Links</h3>
+
+<%= @saved_links.each do |saved_link| %>
+	<p>Title: <%= saved_link.title %></p>
+	<p>Link Url: <%= saved_link.link_url %></p>
+	<p>Click Count: <%= saved_link.click_count %></p>
+<% end %>

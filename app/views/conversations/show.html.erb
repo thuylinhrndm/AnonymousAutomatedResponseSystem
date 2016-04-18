@@ -1,0 +1,12 @@
+<h1>Chat Room</h1>
+<p>User:<%= @conversation.user.email %></p>
+<p>Consultant:<%= @conversation.consultant.email %></p>
+<div id="chats">
+    <%= render @conversation.chat_messages.order(created_at: :asc) %>
+</div>
+<form data-behaviour="room_speaker">
+    <label>Say something:</label>
+    <input id="text" type="text">
+    <%= hidden_field_tag 'user_id', current_user.id %>
+    <%= hidden_field_tag 'conversation_id', @conversation.id %>
+</form>

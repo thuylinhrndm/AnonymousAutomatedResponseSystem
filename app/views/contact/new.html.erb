@@ -1,0 +1,11 @@
+<div class="form-style-9">
+<h1>Contact a Consultant</h1>
+
+<%= form_tag(controller: 'contact', action: 'send_email') do %>
+	<%= label_tag(:message) %>
+	<%= text_area_tag(:message) %>
+	<%= hidden_field_tag(:email, @consultant_email)%>
+	<%= submit_tag "Send email", class: 'small button round' %>
+<% end %>
+</div>
+

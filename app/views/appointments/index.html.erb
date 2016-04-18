@@ -1,0 +1,60 @@
+<div class="row">
+<div class="small-12 columns">
+  <div class="form-style-9">
+    <h1 style="text-align: center">Listing appointments</h1>
+    <table class="table table-striped">
+      <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Day</th>
+            <th>Time</th>
+            <th></th>
+            
+          </tr>
+      </thead>
+
+        <tbody>
+          <% @appointments.each do |appointment| %>
+          <tr>
+          <td><%= appointment.user.name %></td>
+          <td><%= appointment.email %></td>
+          <td><%= appointment.time.strftime("%d %b %y") %></td>
+          <td><%= appointment.time.strftime("%H:%M") %></td>
+          <td><%= link_to 'Show', appointment %> | <%= link_to 'Edit', edit_appointment_path(appointment) %>|<%= button_to 'Destroy', appointment, method: :delete, class: 'small button round', data: { confirm: 'Are you sure?'} %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+        </br>
+        <%= link_to 'New Appointment', new_appointment_path %>
+  
+
+       
+
+      
+ </div>
+ <!--
+ <div class="form-style-10">
+   <h1>Monthly Calendar</h1>
+   <%= month_calendar(events: @appointments) do |date, appointments| %>
+   <%= date %>
+    <br>
+   <%if appointments.size > 0 %>
+   <%= link_to "<strong>#{appointments.size} appointments</strong>".html_safe, '#' %>
+   <% end %>
+   <% end %>
+ </div>-->
+ <!--
+<div class="form-style-10">
+ <h1>Daily Calendar</h1>
+ <%= calendar events: @appointments, number_of_days: 5 do |date, appointments| %>
+  <%= date %>
+    <br>
+   <%if appointments.size > 0 %>
+   <%= link_to "<strong>#{appointments.size} appointments</strong>".html_safe, '#' %>
+   <% end %>
+ <% end %>
+ </div> -->
+</div>
+</div>

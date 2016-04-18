@@ -1,0 +1,42 @@
+<div class="form-style-10">
+  
+<%= form_for(@appointment) do |f| %>
+  <% if @appointment.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@appointment.errors.count, "error") %> prohibited this appointment from being saved:</h2>
+
+      <ul>
+      <% @appointment.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name, value: current_user.name %>
+  </div>
+  <div class="field">
+    <%= f.label :email %><br>
+    <%= f.text_field :email, value: current_user.email %>
+  </div>
+  <div class="field">
+    <%= f.label :time %><br>
+    <%= f.datetime_select :time, order: [:day, :month, :year] %>
+  </div>
+  <div class="field">
+    <%= f.hidden_field :user_id, value: current_user.id %>
+  </div>
+  <div class="field">
+    <%= f.hidden_field :consultant_id, value: params[:consultant_id] %>
+  </div>
+  <div class="actions">
+    <%= f.submit nil, :class => 'button small round' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                appointments_path, :class => 'btn btn-primary' %>
+  </div>
+<% end %>
+</div>
+
+

@@ -1,0 +1,10 @@
+<p style="font-size: 15px;color: #2b92ba"><strong>These appointments have been booked already</strong></p>
+<%= month_calendar events: appointments do |date, appointments| %>
+<%= date %>
+<br>
+<% appointments.each do |appt| %>
+<%= appt.time.strftime("%H:%M") %>
+
+<br>
+<% end %>
+<% end %>

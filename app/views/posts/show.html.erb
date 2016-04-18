@@ -1,0 +1,72 @@
+<div class="row">
+<div class="large-12 columns">
+<p id="notice"><%= notice %></p>
+
+
+<!--<p>
+  <strong>Title:</strong>
+  <%= @post.title %>
+</p>-->
+ <!--Show a created post  -->
+
+<div class="form-style-10">
+<h1><strong>Your Problem:</strong> <%= @post.description %> </h1>
+
+<% if current_user.role == 'consultant' %>
+<%= form_for(@answer) do |f| %>
+  
+	 <div class="field">
+	    <%= f.text_area :description, rows: 4 %>
+	 </div>
+	 <div class="field">
+	    <%= f.hidden_field :user_id, value: current_user.id %>
+	 </div>
+	 <div class=”field”>
+		<%= f.hidden_field :post_id, value: @post.id %>
+	 </div>
+
+	 <div class=”field”>
+	    <%= f.submit "Post Answer" %>
+	 </div>
+<% end %>
+<% end %>
+
+<br />
+
+
+<% if @post.answers.any? %>
+
+	<h2 style="text-align: center; color:#257C9E">Answers</h2>
+		<% @post.answers.each do |answer| %>
+		 <div class="inner-wrap">
+      <p><%= answer.description %></p>
+			<p style="text-align: right"><%= answer.user.name %> - <%= answer.created_at.strftime("%e %b %Y") %></p>
+			
+		</div>
+		<% end %>
+	
+<% end %>
+
+<!--This is the link to go back my answer if user is consultant and back to all post if -->
+<%= link_to image_tag("file_edit.png", :size => "20x20", :crop => :fill), edit_post_path(@post) %> |
+<% if current_user.role == 'consultant' %>
+<%= link_to 'Back to My Answers', my_answers_path, {:style=>'color:#257C9E;', :class => "css_class"} %> |
+<%= link_to 'Back to All Posts', posts_path, {:style=>'color:#257C9E;', :class => "css_class"}%>
+<% else %>
+<%= link_to 'Back to All Posts', posts_path, {:style=>'color:#257C9E;', :class => "css_class"} %>
+<% end %>
+</div>
+
+
+
+ <!--Show suggestions following user's problem   -->
+<% if current_user.role == 'user' %>
+<div class="form-style-10">
+<h2 style="text-align: center; color:#257C9E"><%= @results_list.length %> Suggestions</h2>
+<% @results_list.each do |item| %>
+    <%= render partial: "results/result", locals: {result: item} %>
+  <% end %>
+  <% end %>
+</div>
+</div>
+</div>

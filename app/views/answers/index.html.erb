@@ -1,0 +1,22 @@
+
+
+<h1 style="text-align: center">Listing answers</h1>
+
+<div class="large-12 columns"> 
+ <div class="form-style-10">
+ <% @answers.each do |answer| %>
+   <p> User: <%= answer.user_id %></p>
+   <p> Answer: <%= answer.description %></p>
+    <ul class="inline-list">
+      <li><%= link_to 'Show', answer %></li>
+      <li><%= link_to 'Edit', edit_answer_path(answer) %></li>
+      <li><%= button_to 'Destroy', answer, method: :delete, data: { confirm: 'Are you sure?' } %></li>
+    </ul>
+  <hr/>
+<% end %>
+</div>
+
+
+
+<%= link_to 'New Answer', new_answer_path %>
+</div>

@@ -1,0 +1,83 @@
+<div class="row">
+  <div class="large-12 columns">
+    <div class="form-style-10">
+
+        <h1><%= post.description %>
+        <span><%= post.created_at.strftime("%e %b %Y") %>  
+
+        <% if current_user %>
+            <% if post.user.nil? %>
+            <%= "No User" %>
+            <% elsif post.user != current_user %>
+            <%= "Anonymous" %>
+            <% else %>
+            <%= post.user.name %>
+            <% end %>
+        <% end %>
+       </span>
+       </h1>
+    
+      <!--<div class="inner-wrap"><%= post.description %></div>-->
+       
+
+        <% if current_user %>
+        <% if current_user.role == 'user' %>
+        <div class="inline-list">
+          <%= link_to image_tag("file_edit.png", :size => "40x40", :crop => :fill), edit_post_path(post) %>    
+          <%= button_to 'Destroy', post, method: :delete, class: "button small round" %>
+         
+        </div>
+        <% end %>
+        <% end %>
+        
+        <!-- Reply Box for Consultants only-->
+        <% if current_user %>
+        <% if current_user.role == 'consultant' %>
+        <%= button_to "Write a Reply", post, method: :get, class: 'small button round' %>
+        <% end %>
+        <% end %>
+    
+
+        <% if post.answers.any? %>
+          <div class="section"><span><%= post.answers.count %></span> Answers</div>
+          <% post.answers.order(created_at: :desc).each do |answer| %>
+
+
+          <!--Answer box  -->
+
+      <div class="row">
+          <div class="small-2 small-pull-10 columns">
+              <% if answer.user %>
+                <% if current_user %>
+                  <% if current_user == answer.user %>
+                  <%= answer.user.name %>
+                  <% else %>
+                   
+                    <%= link_to image_tag("message.png", :size => "45x45", :crop => :fill), contact_new_path(consultant_email: answer.user.email), alt: "Email Consultant" %>
+                     <%= link_to image_tag("calendar.png", :size => "45x45", :crop => :fill), new_appointment_path(consultant_id: answer.user.id) %>
+                     <%= link_to image_tag("chat.png", size: "45x45", crop: :fill), chat_path(user_id: current_user.id, consultant_id: answer.user.id) , alt: "chat to consultant" %>
+                  <% end %>  
+                  <% end %>
+              <% else %>
+                <%= link_to "No consultant", "#" %>
+              <% end %>
+          </div>  
+          <div class="small-10 small-push-2 columns">
+            <div class="inner-wrap">
+              <p><%= answer.description %></p>
+              <p style="text-align: right"><%= answer.created_at.strftime("%e %b %Y") %><br>
+            </div>
+          </div>
+          </div>
+          
+          <br />
+      <% end %>
+      <% end %>
+       </div>
+  
+  </div>
+</div>
+  
+
+
+
