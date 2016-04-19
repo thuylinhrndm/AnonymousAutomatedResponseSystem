@@ -1,12 +1,32 @@
-<h1>Chat Room</h1>
-<p>User:<%= @conversation.user.email %></p>
-<p>Consultant:<%= @conversation.consultant.email %></p>
-<div id="chats">
-    <%= render @conversation.chat_messages.order(created_at: :asc) %>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <h1>Chat Room</h1>
+             User:<%= @conversation.user.email %></br>
+             Consultant:<%= @conversation.consultant.email %>
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <span class="glyphicon glyphicon-comment"></span>Chat</br>
+                </div>
+                <div id="chats">
+                <%= render @conversation.chat_messages.order(created_at: :asc) %>
+                </div>
+               
+            
+            <div class="panel-footer">
+            <div class="input-group">
+            <form data-behaviour="room_speaker">
+            <label>Say something:</label>
+            <input id="text" type="text" class="form-control input-sm" placeholder="Type your message here...">
+            <%= hidden_field_tag 'user_id', current_user.id %>
+            <%= hidden_field_tag 'conversation_id', @conversation.id %>
+            </form>
+            </div>
+            </div>
+            </div>
+       
+        </div>
+    </div>
 </div>
-<form data-behaviour="room_speaker">
-    <label>Say something:</label>
-    <input id="text" type="text">
-    <%= hidden_field_tag 'user_id', current_user.id %>
-    <%= hidden_field_tag 'conversation_id', @conversation.id %>
-</form>
+
+ 

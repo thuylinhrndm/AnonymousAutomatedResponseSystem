@@ -1,5 +1,6 @@
+<div class="container-fluid">
 <div class="row">
-  <div class="large-12 columns">
+  <div class="col-lg-12">
     <div class="form-style-10">
 
         <h1><%= post.description %>
@@ -23,7 +24,7 @@
         <% if current_user %>
         <% if current_user.role == 'user' %>
         <div class="inline-list">
-          <%= link_to image_tag("file_edit.png", :size => "40x40", :crop => :fill), edit_post_path(post) %>    
+          <%= link_to image_tag("file_edit.png", :size => "40x40", :crop => :fill), edit_post_path(post) %>
           <%= button_to 'Destroy', post, method: :delete, class: "button small round" %>
          
         </div>
@@ -45,8 +46,8 @@
 
           <!--Answer box  -->
 
-      <div class="row">
-          <div class="small-2 small-pull-10 columns">
+        <div class="row">
+          <div class="col-xs-2">
               <% if answer.user %>
                 <% if current_user %>
                   <% if current_user == answer.user %>
@@ -62,13 +63,13 @@
                 <%= link_to "No consultant", "#" %>
               <% end %>
           </div>  
-          <div class="small-10 small-push-2 columns">
+          <div class="col-xs-10">
             <div class="inner-wrap">
               <p><%= answer.description %></p>
               <p style="text-align: right"><%= answer.created_at.strftime("%e %b %Y") %><br>
             </div>
           </div>
-          </div>
+        </div>
           
           <br />
       <% end %>
@@ -76,6 +77,7 @@
        </div>
   
   </div>
+</div>
 </div>
   
 
