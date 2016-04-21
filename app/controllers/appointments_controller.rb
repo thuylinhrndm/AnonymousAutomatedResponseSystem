@@ -11,7 +11,7 @@ class AppointmentsController < ApplicationController
   end
   
   def my_appointments
-     @appointments  = Appointment.where(user_id: current_user.id)
+     @appointments  = Appointment.where(user_id: current_user.id).where('time >= ?', Time.now).order(time: :asc)
   end
 
   def index

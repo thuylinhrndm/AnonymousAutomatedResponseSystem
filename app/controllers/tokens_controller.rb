@@ -16,7 +16,7 @@ class TokensController < ApplicationController
   grant.endpoint_id = "Chatty:#{current_user.name.gsub(" ", "_")}:browser"
   grant.service_sid = ENV['IPM_SERVICE_SID']
   grant
-end
+  end
 
 def create
   token = get_token
