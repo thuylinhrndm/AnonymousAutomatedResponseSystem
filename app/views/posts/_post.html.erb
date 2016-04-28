@@ -51,7 +51,9 @@
               <% if answer.user %>
                 <% if current_user %>
                   <% if current_user == answer.user %>
+                  <%= link_to image_tag("chat.png", size: "45x45", crop: :fill), chat_path(user_id: current_user.id, consultant_id: answer.user.id) , alt: "chat to consultant" %>
                   <%= answer.user.name %>
+                  
                   <% else %>
                    
                     <%= link_to image_tag("message.png", :size => "45x45", :crop => :fill), contact_new_path(consultant_email: answer.user.email), alt: "Email Consultant" %>

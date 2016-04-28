@@ -3,12 +3,12 @@
     <div class="col-lg-12">
        
         <!-- Search bar -->
-        <div class="form-style-10">
-             <%= form_tag(posts_path, :method => "get", id: "search-form") do %>
-            <%= text_field_tag :search, params[:search], placeholder: "Search for problem" %>
-            <%= submit_tag "Search", class: 'small button round' %>
-            <% end %>
-        </div>
+        <!--<div class="form-style-10">-->
+        <!--     <%= form_tag(posts_path, :method => "get", id: "search-form") do %>-->
+        <!--    <%= text_field_tag :search, params[:search], placeholder: "Search for problem" %>-->
+        <!--    <%= submit_tag "Search", class: 'small button round' %>-->
+        <!--    <% end %>-->
+        <!--</div>-->
       
      <%= render @posts %>
   </div>

@@ -22,7 +22,10 @@
           </td>
           <td><%= appointment.time.strftime("%d %b %y") %></td>
           <td><%= appointment.time.strftime("%H:%M") %></td>
-          <td><%= button_to 'Send Reminder', reminder_path(user_id: appointment.user.id, time:(appointment.time).strftime("%H:%M"), consultant_id: appointment.consultant.id) %></td>
+          <td><%= button_to 'Send Reminder', reminder_path(user_id: appointment.user.id, time:(appointment.time).strftime("%H:%M"), consultant_id: appointment.consultant.id) %>
+          
+          </td>
+          
           <!--<td><%= link_to 'Show', appointment %></td>
           <td><%= link_to 'Edit', edit_appointment_path(appointment) %></td>
           <td><%= button_to 'Destroy', appointment, method: :delete, class: 'small button round', data: { confirm: 'Are you sure?'} %></td>-->
