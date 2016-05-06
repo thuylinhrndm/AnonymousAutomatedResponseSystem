@@ -8,3 +8,12 @@ development:
 
 test:
   adapter: async
+
+production: &production
+  adapter: redis
+  url: redis://redistogo:061bce20417a0fb300ee7479d88ec970@hoki.redistogo.com:9134/
+  host: hoki.redistogo.com
+  port: 9134
+  password: 061bce20417a0fb300ee7479d88ec970
+  inline: true
+  timeout: 1
