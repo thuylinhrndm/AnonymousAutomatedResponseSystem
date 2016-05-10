@@ -2,7 +2,8 @@ class AppointmentsController < ApplicationController
   # include CurrentUser
   before_action :set_current_user
   before_action :set_appointment, only: [:show, :edit, :update, :destroy]
-
+ 
+  
   respond_to :html
 
   def my_clients

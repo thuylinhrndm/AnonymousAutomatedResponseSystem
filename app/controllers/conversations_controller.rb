@@ -24,7 +24,8 @@ class ConversationsController < ApplicationController
       unless current_user_signed_in?
         redirect_to root_url, notice: "Please sign in to do that"
       end
-    end
+  end
+    
 
     def current_user_signed_in?
         current_user ? true : false
