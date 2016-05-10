@@ -47,7 +47,7 @@ end
 gem 'google-search'
 gem "google_custom_search_api" #Google search API
 gem 'faker'
-gem 'foundation-rails', '5.4.3.1'
+# gem 'foundation-rails', '5.4.3.1'
 gem 'simple_calendar'
 gem "omniauth-google-oauth2" #Google API 
 gem 'omniauth-facebook', '1.4.0' #Facebook API for Login
