@@ -52,6 +52,7 @@ gem 'simple_calendar'
 gem "omniauth-google-oauth2" #Google API 
 gem 'omniauth-facebook', '1.4.0' #Facebook API for Login
 gem 'google-api-client', '~> 0.7.0', require: 'google/api_client'
+gem 'sprockets-rails'
 
 gem 'figaro', group: :development
 

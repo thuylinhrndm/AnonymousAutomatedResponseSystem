@@ -254,6 +254,7 @@ DEPENDENCIES
   simple_calendar
   spring
   spring-watcher-listen (~> 2.0.0)
+  sprockets-rails
   sqlite3
   turbolinks (~> 5.x)
   tzinfo-data
