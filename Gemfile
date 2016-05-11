@@ -67,5 +67,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'redis'
 
+gem 'bootstrap-sass'
+
 ruby '2.3.0'
 
