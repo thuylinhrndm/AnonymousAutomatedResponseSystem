@@ -1,4 +1,5 @@
 class AnswersController < ApplicationController
+  before_action :check_current_user_is_signed_in
   before_action :set_answer, only: [:show, :edit, :update, :destroy]
   
   def my_answers
@@ -75,6 +76,18 @@ class AnswersController < ApplicationController
   end
 
   private
+   
+   def check_current_user_is_signed_in
+      unless current_user_signed_in?
+        redirect_to root_url, notice: "Please sign in to do that"
+      end
+    end
+
+    def current_user_signed_in?
+        current_user ? true : false
+    end
+
+  
     # Use callbacks to share common setup or constraints between actions.
     def set_answer
       @answer = Answer.find(params[:id])
