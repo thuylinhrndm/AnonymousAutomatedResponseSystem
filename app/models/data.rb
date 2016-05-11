@@ -18,7 +18,7 @@ class Data
 	end
 	
 	def self.sort(results)
-		results.sort_by {|object| [object.average_rating, object.number_of_ratings, object.click_count] }
-		results.reverse
+		results.sort_by! {|object| [object.average_rating, object.number_of_ratings, object.click_count] }
+		results.reverse!
 	end
 end
