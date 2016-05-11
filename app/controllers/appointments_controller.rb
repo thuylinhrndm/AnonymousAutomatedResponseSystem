@@ -37,8 +37,11 @@ class AppointmentsController < ApplicationController
 
   def create
     @appointment = Appointment.new(appointment_params)
-    @appointment.save
+    if @appointment.save
     respond_with(@appointment)
+    else
+    redirect_to new_appointment_path(params[@consultant_id]), notice: "that time is already taken"
+    end
   end
 
   def update

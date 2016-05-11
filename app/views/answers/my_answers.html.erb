@@ -4,6 +4,7 @@
  <div class="form-style-10">
 
  	<% @answers.each do |answer| %>
+   <% unless answer.nil? %>
    <h1><%= answer.user.name %> | <%= answer.created_at.strftime("%e %b %Y") %> </h1>
     <div class="inner-wrap"> Answer: <%= answer.description unless answer.description.nil? %></div>
     
@@ -12,6 +13,7 @@
    
 
   	<hr/>
+  	<% end %>
 	<% end %>
 
 </div>
