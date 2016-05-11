@@ -3,11 +3,7 @@ class AnswersController < ApplicationController
   before_action :set_answer, only: [:show, :edit, :update, :destroy]
   
   def my_answers
-    if current_user
       @answers = Answer.where(user_id: current_user.id).order(created_at: :desc)
-    else
-      redirect_to root_url, notice: "Sign in or something!"
-    end
   end
   # GET /answers
   # GET /answers.json
