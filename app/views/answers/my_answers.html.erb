@@ -4,11 +4,11 @@
  <div class="form-style-10">
 
  	<% @answers.each do |answer| %>
-   <h1><%= answer.user.name %> | <%= answer.created_at.strftime("%e %b %Y") %> </h1>
-    <div class="inner-wrap"> Answer: <%= answer.description %></div>
+   <h1><%= answer.user.name unless answer.user_id.nil? %> | <%= answer.created_at.strftime("%e %b %Y") %> </h1>
+    <div class="inner-wrap"> Answer: <%= answer.description unless answer.description.nil? %></div>
     
  
-    <%= link_to truncate(answer.post.description, length: 80), post_path(answer.post) %>
+    <%= link_to truncate(answer.post.description, length: 80), post_path(answer.post) unless answer.post_id.nil? %>
    
 
   	<hr/>
