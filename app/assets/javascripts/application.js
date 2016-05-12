@@ -16,5 +16,8 @@
 //= require bootstrap.min 
 //= require turbolinks
 //= require_tree .
+jQuery(document).ready(function($) {
+$(document).foundation();
+});
 
 
